@@ -5,7 +5,14 @@ const cleanCSS = require('gulp-clean-css') // Минификация CSS
 const terser = require('gulp-terser') // Минификация JavaScript
 const concat = require('gulp-concat') // Конкатенация файлов
 const browserSync = require('browser-sync').create() // Для запуска локального сервера и синхронизации с браузером
-const autoprefixer = require('gulp-autoprefixer') // Для добавления вендорных префиксов
+
+let autoprefixer // Для добавления вендорных префиксов
+
+import('gulp-autoprefixer').then((module) => { // Используется import(), чтобы корректно работать с ESM (модулями ECMAScript)
+    autoprefixer = module.default // После загрузки модуля, присваиваем значение переменной
+}).catch((error) => {
+    console.error('Ошибка загрузки модуля gulp-autoprefixer:', error)
+})
 
 // Пути к исходным файлам
 const paths = {
@@ -27,9 +34,6 @@ const paths = {
 function styles() {
     return gulp.src(paths.styles.src) // Берем все SASS файлы
         .pipe(sass().on('error', sass.logError)) // Компилируем SASS в CSS
-        .pipe(autoprefixer({ // Добавляем вендорные префиксы
-            cascade: false // Можно настроить форматирование (например, без отступов)
-        }))
         .pipe(cleanCSS()) // Минифицируем CSS
         .pipe(gulp.dest(paths.styles.dest)) // Сохраняем в папку назначения
         .pipe(browserSync.stream()) // Обновляем браузер при изменениях

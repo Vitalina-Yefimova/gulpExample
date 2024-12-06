@@ -1,4 +1,3 @@
-# Gulp Project Example
 
 This project demonstrates the use of **Gulp** for automating web development tasks, such as SCSS compilation, JS minification, and browser sync.
 
@@ -31,7 +30,7 @@ The site will be available at `http://localhost:3000`.
 
 
 
-## Project Structure\
+## Project Structure
   - `src/` - Source files
   - `scss/` - SCSS files
   - `js/` - JavaScript files
