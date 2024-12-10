@@ -18,15 +18,15 @@ import('gulp-autoprefixer').then((module) => { // Используется impor
 const paths = {
     styles: {
         src: 'src/scss/**/*.scss', // Исходные файлы SASS
-        dest: 'dist/css/'          // Папка для скомпилированных CSS
+        dest: 'docs/css/'          // Папка для скомпилированных CSS
     },
     scripts: {
         src: 'src/js/**/*.js',     // Исходные JS-файлы
-        dest: 'dist/js/'           // Папка для минифицированных JS
+        dest: 'docs/js/'           // Папка для минифицированных JS
     },
     html: {
         src: 'src/*.html',         // Исходные HTML файлы
-        dest: 'dist/'              // Папка для копируемых HTML
+        dest: 'docs/'              // Папка для копируемых HTML
     }
 }
 
@@ -59,7 +59,7 @@ function html() {
 function watch() {
     browserSync.init({ // Инициализируем локальный сервер
         server: {
-            baseDir: 'dist' // Базовая директория сервера
+            baseDir: 'docs' // Базовая директория сервера
         }
     })
     gulp.watch(paths.styles.src, styles) // Следим за изменениями SASS файлов
